@@ -3,7 +3,7 @@
 int  main(){
 	int i, sum=0, average, grades[3];
 	for(i=0; i<3; i++){
-		printf("Enter grade %d:");
+		printf("Enter grade %d:" ,i+1);
 		scanf("%d", &grades[i]);
 		
 		}
