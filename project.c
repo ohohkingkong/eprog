@@ -13,7 +13,7 @@ struct student{
 int main (){
 	struct student stud;
 	FILE *myFile;
-    myFile = fopen("sample.txt", "w");
+    myFile = fopen("sample.txt", "a");
 
 	printf("Enter student name: ");
 	scanf("%s", &stud.name);
@@ -23,4 +23,5 @@ int main (){
 	scanf("%f", &stud.info.gpa);
 	printf("%s %ld %.2f\n", stud.name, stud.info.id, stud.info.gpa);
 	fprintf(myFile, "%s %ld %.2f\n", stud.name, stud.info.id, stud.info.gpa);	
+	fclose(myFile);
 } 
