@@ -14,14 +14,22 @@ int main (){
 	struct student stud;
 	FILE *myFile;
     myFile = fopen("sample.txt", "a");
+    int choice = 1;
 
-	printf("Enter student name: ");
-	scanf("%s", &stud.name);
-	printf("Enter student I.D.: ");
-	scanf("%d", &stud.info.id);
-	printf("Enter student GPA: ");
-	scanf("%f", &stud.info.gpa);
-	printf("%s %ld %.2f\n", stud.name, stud.info.id, stud.info.gpa);
-	fprintf(myFile, "%s %ld %.2f\n", stud.name, stud.info.id, stud.info.gpa);	
+	while(choice = 1){
+		printf("Enter student name: ");
+		scanf("%s", &stud.name);
+		printf("Enter student I.D.: ");
+		scanf("%d", &stud.info.id);
+		printf("Enter student GPA: ");
+		scanf("%f", &stud.info.gpa);
+		printf("%s %ld %.2f\n", stud.name, stud.info.id, stud.info.gpa);
+		fprintf(myFile, "%s %ld %.2f\n", stud.name, stud.info.id, stud.info.gpa);	
+		printf("Add another record?[1/0]: ");
+		scanf("%d", &choice);
+		if(choice == 0){
+			break;
+		}
+	}
 	fclose(myFile);
 } 
