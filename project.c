@@ -13,9 +13,10 @@ struct student{
 int main (){
 	struct student stud;
 	FILE *myFile;
-    myFile = fopen("sample.txt", "a");
     int choice = 1;
-
+    int num_records = 0;
+    
+    myFile = fopen("sample.txt", "a");
 	while(choice = 1){
 		printf("Enter student name: ");
 		scanf("%s", &stud.name);
@@ -30,6 +31,19 @@ int main (){
 		if(choice == 0){
 			break;
 		}
+	}
+	fclose(myFile);
+	
+	myFile = fopen("sample.txt", "r");
+	//check if file exists
+    if(myFile == NULL){
+    	printf("Error: File does not exist");
+    	exit(1);
+	}
+	char temp[128];
+	while (fgets(temp, sizeof temp, myFile) != NULL) {
+		sscanf(temp, "%s %d %f", &stud.name, &stud.info.id, &stud.info.gpa);
+		printf("%s %d %f\n", stud.name, stud.info.id, stud.info.gpa);
 	}
 	fclose(myFile);
 } 
