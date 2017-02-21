@@ -10,32 +10,31 @@ struct student{
 	struct detail info;
 }; 
 
-int main (){
+void displayMenu(){
+	printf("0 - Exit\n");
+	printf("1 - Write to file\n");
+	printf("2 - Read file\n");
+}
+
+void writeToFile(){
+	FILE *myFile;
+	struct student stud;
+	myFile = fopen("sample.txt", "a");
+	printf("Enter student name: ");
+	scanf("%s", &stud.name);
+	printf("Enter student I.D.: ");
+	scanf("%d", &stud.info.id);
+	printf("Enter student GPA: ");
+	scanf("%f", &stud.info.gpa);
+	printf("%s %ld %.2f\n", stud.name, stud.info.id, stud.info.gpa);
+	fprintf(myFile, "%s %ld %.2f\n", stud.name, stud.info.id, stud.info.gpa);	
+	fclose(myFile);
+}
+
+void readFromFile(){
 	struct student stud;
 	FILE *myFile;
-    int choice = 1;
-    int num_records = 0;
-    
-    myFile = fopen("sample.txt", "a");
-	while(choice = 1){
-		printf("Enter student name: ");
-		scanf("%s", &stud.name);
-		printf("Enter student I.D.: ");
-		scanf("%d", &stud.info.id);
-		printf("Enter student GPA: ");
-		scanf("%f", &stud.info.gpa);
-		printf("%s %ld %.2f\n", stud.name, stud.info.id, stud.info.gpa);
-		fprintf(myFile, "%s %ld %.2f\n", stud.name, stud.info.id, stud.info.gpa);	
-		printf("Add another record?[1/0]: ");
-		scanf("%d", &choice);
-		if(choice == 0){
-			break;
-		}
-	}
-	fclose(myFile);
-	
 	myFile = fopen("sample.txt", "r");
-	//check if file exists
     if(myFile == NULL){
     	printf("Error: File does not exist");
     	exit(1);
@@ -46,4 +45,26 @@ int main (){
 		printf("%s %d %f\n", stud.name, stud.info.id, stud.info.gpa);
 	}
 	fclose(myFile);
+}
+
+int main (){	
+    int choice = 1;
+    
+    displayMenu();
+    scanf("%d", &choice);
+    while(choice != 0){
+    	switch(choice){
+    		case 0: 
+    			exit(1);
+    			break;
+    		case 1: 
+    			writeToFile();
+    			break;
+    		case 2: 
+    			readFromFile();
+    			break;
+		}
+		displayMenu();
+    	scanf("%d", &choice);
+	}    
 } 
